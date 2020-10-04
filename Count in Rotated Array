@@ -1,0 +1,32 @@
+//Find the Rotation Count in Rotated Sorted array
+#include<bits/stdc++.h>
+using namespace std;
+int countbsearch(int arr[],int n)
+{
+    int start=0;
+    int end=n-1;
+    
+    while(start<=end)
+    {
+        int mid=start+(end-start)/2;
+        int next=(mid+1)%n;//index not goes out of range
+        int prev=(mid+n-1)%n;//index not goes negative
+        if(arr[mid]<=arr[prev] && arr[mid]<=arr[next])//finding minimum element in array
+            return mid;
+        else if(arr[mid]<arr[end])//it means the right part of given is sorted array
+                end=mid-1;
+        else if(arr[mid]>arr[start])//it means the left part of given array is sorted array
+                start=mid+1;
+    }
+    return -1;//means there is no such minimum element presesnt
+}
+int main()
+{
+    int n;
+    cin>>n;
+    int arr[n];
+    for(int i=0;i<n;i++)
+       cin>>arr[i];
+    cout<<countbsearch(arr,n);
+    return 0;
+}
