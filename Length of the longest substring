@@ -1,0 +1,32 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main() 
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        string s;
+        cin>>s;
+        int i=0,j=0,maxx=0;
+        vector<int> a(256,-1);
+        a[s[0]]=0;
+        while(1)
+        {
+            j++;
+            if(j>=s.size())
+                break;
+            if(a[s[j]]!=-1 && a[s[j]]>=i)
+            {
+                i=a[s[j]]+1;
+            }
+            a[s[j]]=j;
+            maxx=max((j-i+1),maxx);
+
+        }
+        cout<<maxx<<endl; 
+        
+    } 
+    return 0;
+    
+}
