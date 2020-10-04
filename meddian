@@ -1,0 +1,73 @@
+//marge of two sorted array
+#include<bits/stdc++.h>
+using namespace std;
+double meddian(int *arr1,int *arr2,int n,int m)
+{
+	if(n>m)
+	{
+		return meddian(arr1,arr2,m,n); 
+	}
+	int start=0;
+	int end=n-1;
+	cout<<"value of n and end "<<n<<"  "<<end<<endl;
+	while(start<=end)
+	{
+		cout<<"value of start and end "<<start<<"  "<<end<<endl;
+		int partitionX=(start+end)/2;
+		cout<<"value of n and m and value of (n+m+1)/2  "<<(n+m+1)/2<<endl;
+		int partitionY=(n+m+1)/2-partitionX;
+		cout<<"value of partitionX of and partitionY value "<<partitionX<<"       "<<partitionY<<endl;
+		int maxleftX=(partitionX<=0)?INT_MIN:arr1[partitionX-1];
+		int minrightX=(partitionX>=n)?INT_MAX:arr1[partitionX];
+		cout<<"value of maxleftX and  minrightX  value"<<maxleftX<<"          "<<minrightX<<endl;
+		//calculation of Y regarding to provided array
+		cout<<"value of array2  "<<arr2[4]<<"   "<<arr2[3]<<endl;
+		int maxleftY=(partitionY<=0)?INT_MIN:arr2[partitionY-1];
+		int minrightY=(partitionY>=m)?INT_MAX:arr2[partitionY];
+		cout<<"value of maxleftY and  minrightY  value"<<maxleftY<<"          "<<minrightY<<endl;
+		if(maxleftX<=minrightY&&maxleftY<=minrightX)
+		{
+			cout<<"condition of 1"<<endl;
+			//even and odd contition check here
+			if((m+n)%2!=0)
+			{
+				return (double)(max(maxleftX,maxleftY));
+			}
+			else
+			{
+				return (double)((max(maxleftX,maxleftY)+min(minrightX,minrightY))/2);
+			}
+		}
+		else if(maxleftY>minrightX)
+		{
+				cout<<"condition of 2"<<endl;
+			start=partitionX+1;
+		}
+		else
+		{
+				cout<<"condition of 3"<<endl;
+			end=partitionX-1;
+		}
+	}
+	return 2.236;
+}
+int main()
+{
+	cout<<"enter the size"<<endl;
+	int n,m;
+	cin>>n;
+	int arr1[n];
+	cout<<"enter the value in first array"<<endl;
+	for(int i=0;i<n;i++){
+	   cin>>arr1[i];
+}
+	cout<<"enter the value in second array"<<endl;
+	cin>>m;
+	int arr2[m];
+	
+	for(int i=0;i<m;i++){
+	   cin>>arr2[i];
+}
+	
+	cout<<meddian(arr1,arr2,n,m)<<endl;
+}
