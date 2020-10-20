@@ -1,0 +1,71 @@
+#include <iostream>
+using namespace std;
+int main() {
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    int n, k;
+	    cin>>n;
+	    cin>>k;
+	    string s;
+	    cin>>s;
+	    int cap=0;
+	    int small=0;
+	    for(int i=0; i<n; i++)
+	    {
+	        char x= s[i];
+	        int p= int (x);
+	        if(p>=65 && p<=90)
+	        {
+	            cap++;
+	        }
+	        else 
+	        {
+	            small++;
+	        }
+	    }
+	    if(cap==small)
+	    {
+	        if(k>=cap)
+	        {
+	            cout<<"both\n";
+	        }
+	        else if(k<cap)
+	        {
+	            cout<<"none\n";
+	        }
+	    }
+	    if(cap<small)
+	    {
+	        if(k>=small)
+	        {
+	            cout<<"both\n";
+	        }
+	        else if(k<cap)
+	        {
+	            cout<<"none\n";
+	        }
+	        else
+	        {
+	            cout<<"chef\n";
+	        }
+	    }
+	    if(cap>small)
+	    {
+	        if(k>=cap)
+	        {
+	            cout<<"both\n";
+	        }
+	        else if(k<small)
+	        {
+	            cout<<"none\n";
+	        }
+	        else
+	        {
+	            cout<<"brother\n";
+	        }
+	    }
+	}
+	return 0;
+}
